@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import ImageGalleryItem from './ImageGalleryItem';
 
 function ImageGallery({ pageOfGallerey, onClickPicture }) {
   return (
@@ -6,14 +7,11 @@ function ImageGallery({ pageOfGallerey, onClickPicture }) {
       <ul className="imageGallery">
         {pageOfGallerey.map(pic => {
           return (
-            <li className="imageGalleryItem" key={pic.id}>
-              <img
-                className="imageGalleryItem-image"
-                src={pic.webformatURL}
-                alt={pic.tags}
-                onClick={() => onClickPicture(pic.largeImageURL)}
-              />
-            </li>
+            <ImageGalleryItem
+              key={pic.id}
+              pic={pic}
+              onClickPicture={onClickPicture}
+            />
           );
         })}
       </ul>
