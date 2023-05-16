@@ -1,5 +1,3 @@
-Задачи: error ImageGalleryItem очистить input
-
 # React homework template
 
 Этот проект был создан при помощи

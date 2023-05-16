@@ -34,20 +34,6 @@ export default class Modal extends Component {
   }
 }
 
-// class Modal extends Component {
-
-//   render() {
-//     const { image, description } = this.props;
-//     return (
-//       <div className={css.overlay} onClick={this.handleBackdropClick}>
-//         <div className={css.modal}>
-//           <img src={image} alt={description} />
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
 };

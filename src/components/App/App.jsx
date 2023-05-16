@@ -36,7 +36,6 @@ export default class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { request, page } = this.state;
     if (prevState.request !== request || prevState.page !== page) {
-      console.log('request - ', request);
       this.setState({ loading: true });
       try {
         fetch(
@@ -107,8 +106,6 @@ export default class App extends Component {
   render() {
     const { request, station, loading, pageOfGallerey, modal, largeImageURL } =
       this.state;
-    // const { request, page } = this.state;
-    console.log('station - ', station);
     return (
       <MainSection>
         <Searchbar onSubmit={this.handleSubmit} />
@@ -133,5 +130,3 @@ export default class App extends Component {
     );
   }
 }
-
-// https://pixabay.com/api/?q=cat&page=1&key=your_key&image_type=photo&orientation=horizontal&per_page=12

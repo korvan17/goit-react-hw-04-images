@@ -17,7 +17,3 @@ export default class ImageGalleryItem extends Component {
     );
   }
 }
-
-// webformatURL - посилання на маленьке зображення для списку карток
-// largeImageURL - посилання на велике зображення для модального вікна
-// this.setState({ pageOfGallerey })
