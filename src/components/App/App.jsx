@@ -118,6 +118,9 @@ export default class App extends Component {
       this.setState({
         largeImageURL: nextImage.largeImageURL,
       });
+      if (currentIndex + 1 === pageOfGallerey.length - 1) {
+        this.loadMore();
+      }
     }
   };
 
