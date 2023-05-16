@@ -95,6 +95,32 @@ export default class App extends Component {
     }));
   };
 
+  onPrevious = () => {
+    const { pageOfGallerey } = this.state;
+    const currentIndex = pageOfGallerey.findIndex(
+      pic => pic.largeImageURL === this.state.largeImageURL
+    );
+    if (currentIndex > 0) {
+      const previousImage = pageOfGallerey[currentIndex - 1];
+      this.setState({
+        largeImageURL: previousImage.largeImageURL,
+      });
+    }
+  };
+
+  onNext = () => {
+    const { pageOfGallerey } = this.state;
+    const currentIndex = pageOfGallerey.findIndex(
+      pic => pic.largeImageURL === this.state.largeImageURL
+    );
+    if (currentIndex < pageOfGallerey.length - 1) {
+      const nextImage = pageOfGallerey[currentIndex + 1];
+      this.setState({
+        largeImageURL: nextImage.largeImageURL,
+      });
+    }
+  };
+
   loadMore = () => {
     if (!this.state.loading) {
       this.setState(prevState => ({
@@ -124,6 +150,8 @@ export default class App extends Component {
             largeImageURL={largeImageURL}
             description={request}
             onClose={this.toggleModalWindow}
+            onPrevious={this.onPrevious}
+            onNext={this.onNext}
           />
         )}
       </MainSection>

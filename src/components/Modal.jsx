@@ -3,17 +3,46 @@ import PropTypes from 'prop-types';
 
 export default class Modal extends Component {
   componentDidMount() {
-    window.addEventListener('keydown', this.keyPush);
+    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('touchstart', this.handleTouchStart);
+    window.addEventListener('touchmove', this.handleTouchMove);
+    document.body.style.overflow = 'hidden';
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.keyPush);
+    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('touchstart', this.handleTouchStart);
+    window.removeEventListener('touchmove', this.handleTouchMove);
+    document.body.style.overflow = '';
   }
 
-  keyPush = e => {
+  handleKeyDown = e => {
     if (e.code === 'Escape') {
       this.props.onClose();
+    } else if (e.code === 'ArrowLeft') {
+      this.props.onPrevious();
+    } else if (e.code === 'ArrowRight') {
+      this.props.onNext();
     }
+  };
+
+  handleTouchStart = e => {
+    this.touchStartX = e.touches[0].clientX;
+  };
+
+  handleTouchMove = e => {
+    if (!this.touchStartX) return;
+
+    const touchEndX = e.touches[0].clientX;
+    const touchDiff = touchEndX - this.touchStartX;
+
+    if (touchDiff > 0) {
+      this.props.onPrevious(); // Свайп вправо
+    } else if (touchDiff < 0) {
+      this.props.onNext(); // Свайп влево
+    }
+
+    this.touchStartX = null;
   };
 
   handClickleBackdrop = e => {
@@ -36,4 +65,8 @@ export default class Modal extends Component {
 
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
+  onPrevious: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
