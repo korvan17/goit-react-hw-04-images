@@ -16,7 +16,7 @@ export default function App() {
   const [pageGallerey, setPageGallerey] = useState([]);
   const [modal, setModal] = useState(false);
   const [largeImageURL, setLargeImageURL] = useState('');
-  const [error, setError] = useState('');
+  const [err, setErr] = useState('');
 
   useEffect(() => {
     function handleScroll() {
@@ -55,8 +55,9 @@ export default function App() {
           setStation('resolved');
         });
     } catch (error) {
-      setError(error);
+      setErr(error);
       setStation('rejected');
+      console.log('error - ', err)
     } finally {
       setLoading(false);
     }
