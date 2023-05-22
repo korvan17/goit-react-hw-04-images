@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import ImageGalleryItem from './ImageGalleryItem';
 
-function ImageGallery({ pageOfGallerey, onClickPicture }) {
+function ImageGallery({ pageGallerey, onClickPicture }) {
   return (
     <div>
       <ul className="imageGallery">
-        {pageOfGallerey.map(pic => {
+        {pageGallerey.map(pic => {
           return (
             <ImageGalleryItem
               key={pic.id}
@@ -20,7 +20,7 @@ function ImageGallery({ pageOfGallerey, onClickPicture }) {
 }
 
 ImageGallery.propTypes = {
-  pageOfGallerey: PropTypes.arrayOf(
+  pageGallerey: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       webformatURL: PropTypes.string.isRequired,
