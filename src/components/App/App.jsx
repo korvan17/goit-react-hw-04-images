@@ -61,7 +61,7 @@ export default function App() {
     } finally {
       setLoading(false);
     }
-  }, [request, page]);
+  }, [request, page, err]);
 
   function handleSubmit(request) {
     setRequest(request);
